@@ -67,6 +67,24 @@ body::after {
   gap: 18px;
 }
 
+.dot-pattern-demo {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.dot-pattern-svg {
+  width: 100%;
+  height: 100%;
+  color: rgba(88, 138, 255, 0.24);
+}
+
+.dot-pattern-mask {
+  mask-image: none;
+}
+
 .card {
   position: relative;
   background: color-mix(in srgb, var(--bg-soft) 92%, #000000);
@@ -86,6 +104,23 @@ body::after {
 
 .hero h1 span {
   color: var(--brand-strong);
+}
+
+.typing-title {
+  display: block;
+  width: max-content;
+  max-width: 100%;
+}
+
+.typing-line {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid var(--brand-strong);
+  width: 0;
+  animation:
+    typing 2.8s steps(24, end) 0.35s forwards,
+    caretBlink 0.8s step-end infinite;
 }
 
 .eyebrow {
@@ -192,7 +227,38 @@ p {
   flex-shrink: 0;
 }
 
+.next-skills-grid {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.next-skill-item {
+  border: 1px solid #2f4f97;
+  border-radius: 12px;
+  background: linear-gradient(120deg, #0b1d3f, #10295a);
+  color: #d6e5ff;
+  padding: 10px 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
 .contact-buttons {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.cta-card {
+  border-color: #3c63b4;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(47, 124, 255, 0.18), transparent 40%),
+    linear-gradient(120deg, #0d1c3c, #102858);
+}
+
+.cta-actions {
   margin-top: 16px;
   display: flex;
   flex-wrap: wrap;
@@ -230,6 +296,138 @@ p {
 
 .button-outline .eva-icon {
   color: var(--brand-strong);
+}
+
+.button-whatsapp {
+  background: linear-gradient(120deg, #1ea952, #1bd067);
+  color: #ffffff;
+}
+
+.button-whatsapp .eva-icon {
+  color: #ffffff;
+}
+
+.button-github {
+  background: linear-gradient(120deg, #1f2738, #0f1727);
+  color: #ffffff;
+}
+
+.github-icon {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+.whatsapp-icon {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+.gmail-icon {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+.linkedin-icon {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+.footer {
+  border: 1px solid #243f78;
+  border-radius: 16px;
+  background: #081429;
+  padding: 18px;
+  display: grid;
+  gap: 10px;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.footer-links a {
+  color: #9eb7ea;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.footer-links a:hover {
+  color: #dbe8ff;
+}
+
+.footer-copy {
+  font-size: 0.88rem;
+  color: #7f97c7;
+}
+
+.beam-demo {
+  position: relative;
+  margin-top: 16px;
+  width: 100%;
+  min-height: 310px;
+  overflow: hidden;
+  border: 1px solid #243f78;
+  border-radius: 16px;
+  padding: 22px;
+  background: linear-gradient(120deg, #08162f, #0c1f44);
+}
+
+.beam-grid {
+  position: relative;
+  z-index: 2;
+  max-width: 720px;
+  margin: 0 auto;
+  display: grid;
+  gap: 30px;
+}
+
+.beam-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.beam-circle {
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  border: 2px solid #2f4f97;
+  background: #ffffff;
+  box-shadow: 0 0 20px -12px rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.beam-circle-core {
+  width: 64px;
+  height: 64px;
+  border-color: #3f69bc;
+  box-shadow: 0 0 30px -10px rgba(64, 131, 255, 0.65);
+}
+
+.beam-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.beam-path {
+  fill: none;
+  stroke-width: 2;
+  stroke-dasharray: 14 8;
+  animation-name: beamMove;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 
 .background-glow {
@@ -440,6 +638,27 @@ p {
   }
 }
 
+@keyframes typing {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes caretBlink {
+  from,
+  to {
+    border-right-color: transparent;
+  }
+
+  50% {
+    border-right-color: var(--brand-strong);
+  }
+}
+
 @keyframes blueFlow {
   from {
     transform: translate3d(-2%, 0, 0) scale(1);
@@ -470,6 +689,16 @@ p {
   }
 }
 
+@keyframes beamMove {
+  from {
+    stroke-dashoffset: 0;
+  }
+
+  to {
+    stroke-dashoffset: -120;
+  }
+}
+
 @media (max-width: 700px) {
   .page {
     padding-top: 34px;
@@ -484,7 +713,28 @@ p {
     grid-template-columns: 1fr;
   }
 
+  .next-skills-grid {
+    grid-template-columns: 1fr;
+  }
+
   .interactive-grid {
     grid-template-columns: 1fr;
+  }
+
+  .beam-demo {
+    min-height: 340px;
+    padding: 16px;
+  }
+
+  .beam-grid {
+    gap: 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typing-line {
+    animation: none;
+    width: auto;
+    border-right: 0;
   }
 }

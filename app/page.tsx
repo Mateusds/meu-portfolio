@@ -1,11 +1,11 @@
 const eva = require("eva-icons");
-import InteractiveSections from "./components/InteractiveSections";
+import { DotPatternDemo } from "./components/DotPatternDemo";
 
 const techStacks = [
   {
     category: "Web",
     icon: "layout-outline",
-    items: ["React.js", "Next.js"]
+    items: ["React.js", "Next.js", "TypeScript"]
   },
   {
     category: "Mobile",
@@ -29,6 +29,11 @@ const tools = [
     name: "JavaScript",
     alt: "Mateus-Js",
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+  },
+  {
+    name: "TypeScript",
+    alt: "Mateus-TypeScript",
+    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"
   },
   {
     name: "HTML5",
@@ -72,6 +77,17 @@ const tools = [
   }
 ];
 
+const nextSkills = [
+  "SSR, SSG e ISR",
+  "App Router e Nested Layouts",
+  "Server Components e Client Components",
+  "Route Handlers e APIs",
+  "Otimizacao de performance e cache",
+  "SEO tecnico (metadata, sitemap, robots)",
+  "Integracao com Supabase e Firebase",
+  "Deploy com GitHub Actions e Pages"
+];
+
 function EvaIcon({ name }: { name: string }) {
   const icon = eva.icons[name];
 
@@ -83,6 +99,7 @@ function EvaIcon({ name }: { name: string }) {
     <span
       className="eva-icon"
       aria-hidden="true"
+      suppressHydrationWarning
       dangerouslySetInnerHTML={{
         __html: icon.toSvg({
           fill: "currentColor",
@@ -95,9 +112,9 @@ function EvaIcon({ name }: { name: string }) {
 }
 
 export default function Home() {
-
   return (
     <main className="page">
+      <DotPatternDemo />
       <div className="background-glow background-glow-1" />
       <div className="background-glow background-glow-2" />
 
@@ -106,8 +123,10 @@ export default function Home() {
           <EvaIcon name="person-outline" />
           <span>Portfolio</span>
         </p>
-        <h1>
-          Ola, sou <span>Mateus Marques</span>
+        <h1 className="typing-title">
+          <span className="typing-line">
+            Olá, sou <span>Mateus Marques</span>
+          </span>
         </h1>
         <p className="lead">
           Desenvolvedor <strong>Front-end e Mobile</strong> de{" "}
@@ -163,14 +182,58 @@ export default function Home() {
         </div>
       </section>
 
-      <InteractiveSections />
-
       <section className="card reveal delay-3">
+        <h2 className="title-row">
+          <EvaIcon name="layers-outline" />
+          <span>Habilidades Next.js (Junior)</span>
+        </h2>
+        <p>
+          Competencias que aplico no desenvolvimento de projetos com Next.js.
+        </p>
+        <div className="next-skills-grid">
+          {nextSkills.map((skill) => (
+            <span key={skill} className="next-skill-item">
+              {skill}
+            </span>
+          ))}
+        </div>
+      </section>
+
+      {/* <section className="card reveal delay-4">
+        <h2 className="title-row">
+          <EvaIcon name="shuffle-outline" />
+          <span>Fluxo de Integracoes</span>
+        </h2>
+        <p>Conexoes animadas entre ferramentas usando Animated Beam.</p>
+        <AnimatedBeamDemo />
+      </section> */}
+
+      {/* <InteractiveSections /> */}
+
+      <section className="card reveal delay-4">
         <h2 className="title-row">
           <EvaIcon name="compass-outline" />
           <span>Como me encontrar</span>
         </h2>
         <div className="contact-buttons">
+          <a
+            href="https://github.com/Mateusds"
+            target="_blank"
+            rel="noreferrer"
+            className="button button-github"
+          >
+            <span className="button-content">
+              <img
+                className="github-icon"
+                src="https://cdn.simpleicons.org/github/ffffff"
+                alt="GitHub"
+                width={18}
+                height={18}
+                loading="lazy"
+              />
+              <span>GitHub</span>
+            </span>
+          </a>
           <a
             href="https://www.linkedin.com/"
             target="_blank"
@@ -178,18 +241,110 @@ export default function Home() {
             className="button button-outline"
           >
             <span className="button-content">
-              <EvaIcon name="link-outline" />
+              <img
+                className="linkedin-icon"
+                src="https://cdn.simpleicons.org/linkedin/0A66C2"
+                alt="LinkedIn"
+                width={18}
+                height={18}
+                loading="lazy"
+              />
               <span>LinkedIn</span>
             </span>
           </a>
           <a href="mailto:mateus@email.com" className="button">
             <span className="button-content">
-              <EvaIcon name="email-outline" />
+              <img
+                className="gmail-icon"
+                src="https://cdn.simpleicons.org/gmail/EA4335"
+                alt="Gmail"
+                width={18}
+                height={18}
+                loading="lazy"
+              />
               <span>Gmail</span>
+            </span>
+          </a>
+          <a
+            href="https://wa.me/5582988059412"
+            target="_blank"
+            rel="noreferrer"
+            className="button button-whatsapp"
+          >
+            <span className="button-content">
+              <img
+                className="whatsapp-icon"
+                src="https://cdn.simpleicons.org/whatsapp/ffffff"
+                alt="WhatsApp"
+                width={18}
+                height={18}
+                loading="lazy"
+              />
+              <span>WhatsApp</span>
             </span>
           </a>
         </div>
       </section>
+
+      <section className="card reveal delay-4 cta-card">
+        <h2>Vamos conversar sobre seu projeto</h2>
+        <p>
+          Se voce precisa de uma interface moderna, performatica e responsiva,
+          estou pronto para colaborar no seu produto.
+        </p>
+        <div className="cta-actions">
+          <a
+            href="https://wa.me/5582988059412"
+            target="_blank"
+            rel="noreferrer"
+            className="button button-whatsapp"
+          >
+            <span className="button-content">
+              <img
+                className="whatsapp-icon"
+                src="https://cdn.simpleicons.org/whatsapp/ffffff"
+                alt="WhatsApp"
+                width={18}
+                height={18}
+                loading="lazy"
+              />
+              <span>Falar no WhatsApp</span>
+            </span>
+          </a>
+          <a href="mailto:mateus@email.com" className="button">
+            <span className="button-content">
+              <img
+                className="gmail-icon"
+                src="https://cdn.simpleicons.org/gmail/EA4335"
+                alt="Gmail"
+                width={18}
+                height={18}
+                loading="lazy"
+              />
+              <span>Enviar Email</span>
+            </span>
+          </a>
+        </div>
+      </section>
+
+      {/* <footer className="footer reveal delay-4">
+        <nav className="footer-links" aria-label="Links rapidos">
+          <a href="https://github.com/Mateusds" target="_blank" rel="noreferrer">
+            GitHub
+          </a>
+          <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">
+            LinkedIn
+          </a>
+          <a href="mailto:mateus@email.com">Email</a>
+          <a href="https://wa.me/5582988059412" target="_blank" rel="noreferrer">
+            WhatsApp
+          </a>
+        </nav>
+        <p className="footer-copy">
+          © {new Date().getFullYear()} Mateus Marques. Todos os direitos
+          reservados.
+        </p>
+      </footer> */}
     </main>
   );
 }

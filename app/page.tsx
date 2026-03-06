@@ -168,7 +168,7 @@ export default function Home() {
       <section className="card reveal delay-3">
         <h2 className="title-row">
           <EvaIcon name="compass-outline" />
-          <span>Como me encontrar</span>
+          <span>Como me encontrar 123</span>
         </h2>
         <div className="contact-buttons">
           <a

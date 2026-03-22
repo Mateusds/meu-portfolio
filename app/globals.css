@@ -145,8 +145,8 @@ body::after {
   align-items: center;
   flex-wrap: wrap;
   gap: 8px;
-  max-width: 100%;
   min-width: 0;
+  max-width: 100%;
 }
 
 .stack-title {
@@ -300,11 +300,6 @@ p {
   flex-wrap: wrap;
   gap: 8px;
   text-align: center;
-}
-
-img,
-svg {
-  max-width: 100%;
 }
 
 .button:hover {
@@ -647,6 +642,11 @@ svg {
   padding: 14px 12px;
   cursor: pointer;
   min-height: 44px;
+}
+
+img,
+svg {
+  max-width: 100%;
 }
 
 .faq-answer {

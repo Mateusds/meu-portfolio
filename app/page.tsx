@@ -125,7 +125,7 @@ export default function Home() {
         </p>
         <h1 className="typing-title">
           <span className="typing-line">
-            Olá 123, sou <span>Mateus Marques</span>
+            Olá, sou <span>Mateus Marques</span>
           </span>
         </h1>
         <p className="lead">

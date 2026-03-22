@@ -19,6 +19,8 @@ body {
   margin: 0;
   padding: 0;
   width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
 }
 
 body {
@@ -64,6 +66,7 @@ body::after {
 .page {
   position: relative;
   width: min(980px, calc(100% - 32px));
+  max-width: 100%;
   margin: 0 auto;
   padding: 56px 0 80px;
   display: grid;
@@ -97,6 +100,7 @@ body::after {
   padding: clamp(18px, 3.8vw, 28px);
   backdrop-filter: blur(6px);
   overflow-wrap: anywhere;
+  max-width: 100%;
 }
 
 .hero h1 {
@@ -137,9 +141,12 @@ body::after {
 }
 
 .title-row {
-  display: inline-flex;
+  display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 8px;
+  max-width: 100%;
+  min-width: 0;
 }
 
 .stack-title {
@@ -290,8 +297,14 @@ p {
 .button-content {
   display: inline-flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 8px;
   text-align: center;
+}
+
+img,
+svg {
+  max-width: 100%;
 }
 
 .button:hover {
@@ -780,6 +793,11 @@ p {
 
   .button {
     width: 100%;
+  }
+
+  .title-row span {
+    min-width: 0;
+    overflow-wrap: anywhere;
   }
 
   .beam-demo {

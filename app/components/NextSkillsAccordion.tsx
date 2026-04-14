@@ -15,7 +15,7 @@ type NextSkillsAccordionProps = {
 export function NextSkillsAccordion({
   skills
 }: NextSkillsAccordionProps) {
-  const [openSkill, setOpenSkill] = useState<string | null>(skills[0]?.title ?? null);
+  const [openSkill, setOpenSkill] = useState<string | null>(null);
   const [openAll, setOpenAll] = useState(false);
   const skillColumns = [
     skills.filter((_, index) => index % 2 === 0),

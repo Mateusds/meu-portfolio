@@ -51,7 +51,7 @@ body::before {
     radial-gradient(circle at 25% 35%, rgba(47, 124, 255, 0.2), transparent 34%),
     radial-gradient(circle at 70% 60%, rgba(34, 98, 255, 0.18), transparent 38%);
   filter: blur(20px);
-  animation: blueFlow 12s ease-in-out infinite alternate;
+  animation: none;
 }
 
 body::after {
@@ -60,7 +60,7 @@ body::after {
     linear-gradient(90deg, rgba(98, 160, 255, 0.08) 1px, transparent 1px);
   background-size: 72px 72px;
   mask-image: radial-gradient(circle at center, black 35%, transparent 85%);
-  animation: gridShift 16s linear infinite;
+  animation: none;
 }
 
 .page {
@@ -101,6 +101,9 @@ body::after {
   backdrop-filter: blur(6px);
   overflow-wrap: anywhere;
   max-width: 100%;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 .hero h1 {
@@ -127,8 +130,7 @@ body::after {
   border-right: 2px solid var(--brand-strong);
   width: 0;
   animation:
-    typing 2.8s steps(24, end) 0.35s forwards,
-    caretBlink 0.8s step-end infinite;
+    typing 2.8s steps(24, end) 0.35s forwards;
 }
 
 .eyebrow {
@@ -702,18 +704,18 @@ p {
   top: -14vh;
   left: -10vw;
   background: #2f7cff;
-  animation: orbFloatOne 11s ease-in-out infinite alternate;
+  animation: none;
 }
 
 .background-glow-2 {
   bottom: -18vh;
   right: -14vw;
   background: #1b56d9;
-  animation: orbFloatTwo 13s ease-in-out infinite alternate;
+  animation: none;
 }
 
 .reveal {
-  animation: slideUp 0.8s ease both;
+  animation: slideUp 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
 .delay-1 {
@@ -917,13 +919,14 @@ svg {
 }
 
 @keyframes caretBlink {
-  from,
-  to {
-    border-right-color: transparent;
+  0%,
+  45% {
+    border-right-color: var(--brand-strong);
   }
 
-  50% {
-    border-right-color: var(--brand-strong);
+  55%,
+  100% {
+    border-right-color: transparent;
   }
 }
 

@@ -69,7 +69,7 @@ const journey = [
   {
     label: "Atual",
     period: "2026",
-    text: "Atuando como front-end junior com foco em entregas modernas, responsivas e orientadas a produto."
+    text: "Atuando como front-end com foco em entregas modernas, responsivas e orientadas a produto."
   }
 ];
 

@@ -18,7 +18,7 @@ const techStacks = [
   {
     category: "Backend / BaaS",
     icon: "hard-drive-outline",
-    items: ["Supabase", "Firebase", "PHP Junior"]
+    items: ["Supabase", "Firebase", "PHP"]
   },
   {
     category: "Linguagens",
@@ -105,7 +105,7 @@ const tools = [
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prisma/prisma-original.svg"
   },
   {
-    name: "PHP Junior",
+    name: "PHP",
     alt: "Mateus-PHP",
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg"
   }
@@ -260,7 +260,7 @@ export default function Home() {
       <section className="card reveal delay-3">
         <h2 className="title-row">
           <EvaIcon name="layers-outline" />
-          <span>Habilidades Next.js (Junior)</span>
+          <span>Habilidades Next.js</span>
         </h2>
         <p>
           Competências que aplico no desenvolvimento de projetos com Next.js.

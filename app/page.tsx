@@ -2,6 +2,7 @@ const eva = require("eva-icons");
 import { DotPatternDemo } from "./components/DotPatternDemo";
 import { NextSkillsAccordion } from "./components/NextSkillsAccordion";
 import { ProjectBriefForm } from "./components/ProjectBriefForm";
+import { SkillsBadges } from "./components/SkillsBadges";
 
 const techStacks = [
   {
@@ -253,23 +254,7 @@ export default function Home() {
           <EvaIcon name="award-outline" />
           <span>Habilidades e Ferramentas</span>
         </h2>
-        <div className="badges">
-          {tools.map((tool) => (
-            <span key={tool.name} className="badge">
-              <span className="badge-content">
-                <img
-                  className={`tool-logo ${tool.iconClassName ?? ""}`.trim()}
-                  src={tool.src}
-                  alt={tool.alt}
-                  height={30}
-                  width={30}
-                  loading="lazy"
-                />
-                <span>{tool.name}</span>
-              </span>
-            </span>
-          ))}
-        </div>
+        <SkillsBadges tools={tools} />
       </section>
 
       <section className="card reveal delay-3">

@@ -15,7 +15,7 @@ const techStacks = [
   {
     category: "Backend / BaaS",
     icon: "hard-drive-outline",
-    items: ["Supabase", "Firebase", "PHP"]
+    items: ["Supabase", "Firebase", "PHP Junior"]
   },
   {
     category: "Linguagens",
@@ -71,7 +71,7 @@ const tools = [
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg"
   },
   {
-    name: "PHP",
+    name: "PHP Junior",
     alt: "Mateus-PHP",
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg"
   }

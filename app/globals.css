@@ -65,7 +65,7 @@ body::after {
 
 .page {
   position: relative;
-  width: min(980px, calc(100% - 32px));
+  width: min(1240px, calc(100% - 32px));
   max-width: 100%;
   margin: 0 auto;
   padding: 56px 0 80px;
@@ -242,6 +242,40 @@ p {
   flex-shrink: 0;
 }
 
+.tool-logo-light-bg {
+  background: #ffffff;
+  border-radius: 999px;
+  padding: 2px;
+}
+
+.next-skills-toolbar {
+  margin-top: 14px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.next-skills-toggle-all {
+  border: 1px solid #3a62b3;
+  border-radius: 999px;
+  background: rgba(16, 41, 90, 0.72);
+  color: #d6e5ff;
+  padding: 10px 16px;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.next-skills-toggle-all:hover {
+  transform: translateY(-1px);
+  border-color: #5a87e6;
+  background: rgba(22, 56, 120, 0.85);
+}
+
 .next-skills-grid {
   margin-top: 14px;
   display: grid;
@@ -249,14 +283,133 @@ p {
   gap: 10px;
 }
 
-.next-skill-item {
+.next-skills-column {
+  display: grid;
+  gap: 10px;
+  align-content: start;
+}
+
+.next-skill-card {
+  display: flex;
+  flex-direction: column;
   border: 1px solid #2f4f97;
-  border-radius: 12px;
+  border-radius: 18px;
   background: linear-gradient(120deg, #0b1d3f, #10295a);
   color: #d6e5ff;
-  padding: 10px 12px;
+  overflow: hidden;
+  transition:
+    border-color 0.28s ease,
+    box-shadow 0.28s ease,
+    transform 0.28s ease;
+}
+
+.next-skill-card:hover {
+  border-color: #4a76d4;
+  transform: translateY(-1px);
+}
+
+.next-skill-card-open {
+  border-color: #5a87e6;
+  box-shadow: 0 16px 30px rgba(7, 18, 45, 0.28);
+}
+
+.next-skill-trigger {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  padding: 18px 20px;
+  font: inherit;
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: 700;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.next-skill-trigger span:first-child {
+  line-height: 1.35;
+}
+
+.next-skill-chevron {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  border: 1px solid rgba(214, 229, 255, 0.18);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  line-height: 1;
+  transition:
+    transform 0.28s ease,
+    background-color 0.28s ease,
+    border-color 0.28s ease;
+}
+
+.next-skill-chevron-open {
+  transform: rotate(45deg);
+  background: rgba(98, 160, 255, 0.14);
+  border-color: rgba(98, 160, 255, 0.55);
+}
+
+.next-skill-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows 0.32s ease,
+    opacity 0.24s ease;
+}
+
+.next-skill-panel-open {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.next-skill-panel-content {
+  min-height: 0;
+  overflow: hidden;
+  padding: 0 20px 0;
+  display: grid;
+  gap: 12px;
+  transition: padding 0.32s ease;
+}
+
+.next-skill-panel p {
+  color: #bdd0f7;
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
+.next-skill-panel-open .next-skill-panel-content {
+  padding: 0 20px 18px;
+}
+
+.next-skill-example {
+  display: grid;
+  gap: 6px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(98, 160, 255, 0.2);
+  background: rgba(8, 20, 45, 0.34);
+}
+
+.next-skill-example strong {
+  color: #edf4ff;
+  font-size: 0.82rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.next-skill-example span {
+  color: #c2d4fb;
+  font-size: 0.88rem;
+  line-height: 1.55;
 }
 
 .contact-buttons {
@@ -278,6 +431,87 @@ p {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
+}
+
+.brief-form {
+  margin-top: 18px;
+  display: grid;
+  gap: 16px;
+}
+
+.brief-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.brief-field {
+  display: grid;
+  gap: 8px;
+}
+
+.brief-field span {
+  color: #e8f1ff;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.brief-field input,
+.brief-field select,
+.brief-field textarea {
+  width: 100%;
+  border: 1px solid rgba(107, 153, 236, 0.3);
+  border-radius: 14px;
+  background: rgba(6, 15, 35, 0.42);
+  color: #edf4ff;
+  padding: 13px 14px;
+  font: inherit;
+  outline: none;
+  transition:
+    border-color 0.22s ease,
+    box-shadow 0.22s ease,
+    background-color 0.22s ease;
+}
+
+.brief-field input::placeholder,
+.brief-field textarea::placeholder {
+  color: #8ea4d3;
+}
+
+.brief-field input:focus,
+.brief-field select:focus,
+.brief-field textarea:focus {
+  border-color: #67a1ff;
+  box-shadow: 0 0 0 3px rgba(98, 160, 255, 0.14);
+  background: rgba(7, 18, 42, 0.7);
+}
+
+.brief-field textarea {
+  resize: vertical;
+  min-height: 132px;
+}
+
+.brief-field-full {
+  grid-column: 1 / -1;
+}
+
+.brief-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding-top: 2px;
+}
+
+.brief-actions-note {
+  color: #a9bee9;
+  font-size: 0.9rem;
+}
+
+.brief-submit {
+  justify-self: end;
+  min-width: 260px;
+  padding-inline: 24px;
 }
 
 .button {
@@ -452,24 +686,30 @@ p {
 .background-glow {
   pointer-events: none;
   position: fixed;
-  width: 320px;
-  height: 320px;
+  width: 52vw;
+  height: 52vw;
+  min-width: 420px;
+  min-height: 420px;
+  max-width: 780px;
+  max-height: 780px;
   border-radius: 50%;
-  filter: blur(70px);
-  opacity: 0.35;
-  animation: orbFloat 10s ease-in-out infinite alternate;
+  filter: blur(120px);
+  opacity: 0.28;
+  will-change: transform;
 }
 
 .background-glow-1 {
-  top: -60px;
-  right: -80px;
+  top: -14vh;
+  left: -10vw;
   background: #2f7cff;
+  animation: orbFloatOne 11s ease-in-out infinite alternate;
 }
 
 .background-glow-2 {
-  bottom: -40px;
-  left: -90px;
+  bottom: -18vh;
+  right: -14vw;
   background: #1b56d9;
+  animation: orbFloatTwo 13s ease-in-out infinite alternate;
 }
 
 .reveal {
@@ -707,13 +947,23 @@ svg {
   }
 }
 
-@keyframes orbFloat {
+@keyframes orbFloatOne {
   from {
-    transform: translateY(-6px);
+    transform: translate3d(-12vw, -10vh, 0) scale(0.88);
   }
 
   to {
-    transform: translateY(10px);
+    transform: translate3d(54vw, 70vh, 0) scale(1.24);
+  }
+}
+
+@keyframes orbFloatTwo {
+  from {
+    transform: translate3d(14vw, 12vh, 0) scale(1.12);
+  }
+
+  to {
+    transform: translate3d(-52vw, -62vh, 0) scale(0.82);
   }
 }
 
@@ -729,7 +979,7 @@ svg {
 
 @media (max-width: 700px) {
   .page {
-    width: min(980px, calc(100% - 24px));
+    width: min(1240px, calc(100% - 24px));
     padding-top: 28px;
     padding-bottom: 56px;
     gap: 14px;
@@ -768,6 +1018,43 @@ svg {
   .next-skills-grid {
     grid-template-columns: 1fr;
     gap: 8px;
+  }
+
+  .brief-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .brief-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .next-skills-column {
+    gap: 8px;
+  }
+
+  .next-skills-toolbar {
+    justify-content: stretch;
+  }
+
+  .next-skills-toggle-all {
+    width: 100%;
+  }
+
+  .brief-submit {
+    width: 100%;
+    justify-self: stretch;
+    min-width: 0;
+  }
+
+  .next-skill-trigger {
+    padding: 16px 18px;
+  }
+
+  .next-skill-panel-open .next-skill-panel-content {
+    padding-left: 18px;
+    padding-right: 18px;
+    padding-bottom: 16px;
   }
 
   .interactive-grid {
@@ -812,7 +1099,7 @@ svg {
 
 @media (max-width: 420px) {
   .page {
-    width: min(980px, calc(100% - 18px));
+    width: min(1240px, calc(100% - 18px));
     padding-top: 20px;
   }
 
@@ -853,5 +1140,12 @@ svg {
     animation: none;
     width: auto;
     border-right: 0;
+  }
+
+  .next-skill-card,
+  .next-skill-chevron,
+  .next-skill-panel,
+  .next-skill-panel p {
+    transition: none;
   }
 }

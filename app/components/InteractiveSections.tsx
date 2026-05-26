@@ -18,7 +18,7 @@ const projects: Project[] = [
     category: "Web",
     summary:
       "Painel com graficos, filtros por periodo e autenticacao, focado em performance para equipes comerciais.",
-    stack: ["Next.js", "TypeScript", "Supabase"],
+    stack: ["Next.js", "TypeScript", "MySQL"],
     highlight: "Interface responsiva com carregamento otimizado."
   },
   {
@@ -27,7 +27,7 @@ const projects: Project[] = [
     category: "Mobile",
     summary:
       "Aplicativo para entregadores com rastreio em tempo real, historico de corridas e notificacoes push.",
-    stack: ["React Native", "Expo", "Firebase"],
+    stack: ["React Native", "Expo", "PostgreSQL"],
     highlight: "Fluxo mobile-first e atualizacao em tempo real."
   },
   {
@@ -45,7 +45,7 @@ const projects: Project[] = [
     category: "Fullstack",
     summary:
       "Agenda com gerenciamento de horarios, confirmacao por email e painel administrativo.",
-    stack: ["Next.js", "Supabase", "PHP"],
+    stack: ["Next.js", "MySQL", "PHP"],
     highlight: "Automacao de tarefas e menor retrabalho operacional."
   }
 ];
@@ -64,7 +64,7 @@ const journey = [
   {
     label: "Mobile",
     period: "2025",
-    text: "Ampliei o foco para React Native e Expo, criando apps com integracoes em Firebase e Supabase."
+    text: "Ampliei o foco para React Native e Expo, criando apps com integracoes em MySQL e PostgreSQL."
   },
   {
     label: "Atual",
@@ -82,7 +82,7 @@ const faqItems = [
   {
     question: "Voce trabalha com APIs e banco de dados?",
     answer:
-      "Sim. Faço integracoes com Supabase e Firebase e tambem consigo apoiar em backend com PHP."
+      "Sim. Faço integracoes com MySQL, PostgreSQL e tambem consigo apoiar em backend com PHP."
   },
   {
     question: "Seu foco principal hoje?",

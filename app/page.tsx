@@ -16,9 +16,9 @@ const techStacks = [
     items: ["React Native", "Expo"]
   },
   {
-    category: "Backend / BaaS",
+    category: "Backend / Bancos de Dados",
     icon: "hard-drive-outline",
-    items: ["Supabase", "Firebase", "PHP"]
+    items: ["MySQL", "PostgreSQL", "PHP"]
   },
   {
     category: "Linguagens",
@@ -48,11 +48,11 @@ const tools = [
     alt: "Mateus-CSS",
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
   },
-  {
-    name: "Tailwind CSS",
-    alt: "Mateus-Tailwind",
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg"
-  },
+  // {
+  //   name: "Tailwind CSS",
+  //   alt: "Mateus-Tailwind",
+  //   src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg"
+  // },
   {
     name: "React",
     alt: "Mateus-React",
@@ -90,14 +90,14 @@ const tools = [
     src: "https://www.vectorlogo.zone/logos/vercel/vercel-icon.svg"
   },
   {
-    name: "Supabase",
-    alt: "Mateus-Supabase",
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg"
+    name: "MySQL",
+    alt: "Mateus-MySQL",
+    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
   },
   {
-    name: "Firebase",
-    alt: "Mateus-Firebase",
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg"
+    name: "PostgreSQL",
+    alt: "Mateus-PostgreSQL",
+    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
   },
   {
     name: "Prisma",
@@ -155,11 +155,11 @@ const nextSkills = [
       "Exemplo: definir title e description por página e gerar sitemap.xml para ajudar na indexação."
   },
   {
-    title: "Integração com Supabase e Firebase",
+    title: "Integração com bancos de dados e APIs",
     description:
-      "Faço integrações com autenticação, banco de dados e serviços em tempo real usando Supabase e Firebase conforme a necessidade do projeto.",
+      "Faço integrações com autenticação, banco de dados e serviços externos usando MySQL, PostgreSQL e PHP conforme a necessidade do projeto.",
     example:
-      "Exemplo: autenticar usuários com Supabase e salvar dados em tempo real para dashboards ou painéis."
+      "Exemplo: autenticar usuários e salvar dados em MySQL ou PostgreSQL para dashboards ou painéis."
   },
   {
     title: "Deploy com GitHub Actions e Pages",
@@ -214,16 +214,90 @@ export default function Home() {
       <div className="background-glow background-glow-2" />
 
       <section className="hero card reveal">
-        <h1 className="typing-title">
-          <span className="typing-line">
-            Olá, sou <span>Mateus Marques</span>
-          </span>
-        </h1>
-        <p className="lead">
-          Desenvolvedor <strong>Front-end e Mobile</strong> de{" "}
-          <strong>Alagoas, Brasil</strong>, apaixonado por tecnologia e inovação.
-          Foco em criar aplicações modernas e performáticas.
-        </p>
+        <div className="hero-layout">
+          <div className="hero-copy">
+            <h1 className="typing-title">
+              <span className="typing-line">
+                Olá, sou <span className="typing-name">Mateus Marques</span>
+              </span>
+            </h1>
+            <p className="lead">
+              Desenvolvedor <strong>Front-end e Mobile</strong> de{" "}
+              <strong>Alagoas, Brasil</strong>, apaixonado por tecnologia e inovação.
+              Foco em criar aplicações modernas{" "}
+              <span className="lead-nowrap">e performáticas.</span>
+            </p>
+          </div>
+
+          <aside className="hero-code-panel" aria-label="Visual de programação">
+            <div className="code-window">
+              <div className="code-window-header">
+                <span className="code-window-dots" aria-hidden="true">
+                  <span />
+                  <span />
+                  <span />
+                </span>
+                <span className="code-window-title">stack.ts</span>
+              </div>
+
+              <div className="code-window-body">
+                <pre className="code-snippet">
+                  <code>
+                    <span className="token-keyword">const</span>{" "}
+                    <span className="token-identifier">stack</span>{" "}
+                    <span className="token-operator">=</span>{" "}
+                    <span className="token-punctuation">{`{`}</span>
+                    {"\n"}
+                    {"  "}
+                    <span className="token-key">frontend</span>
+                    <span className="token-punctuation">:</span>{" "}
+                    <span className="token-punctuation">[</span>
+                    <span className="token-string">"React"</span>
+                    <span className="token-punctuation">, </span>
+                    <span className="token-string">"Next.js"</span>
+                    <span className="token-punctuation">, </span>
+                    <span className="token-string">"TypeScript"</span>
+                    <span className="token-punctuation">]</span>
+                    <span className="token-punctuation">,</span>
+                    {"\n"}
+                    {"  "}
+                    <span className="token-key">mobile</span>
+                    <span className="token-punctuation">:</span>{" "}
+                    <span className="token-punctuation">[</span>
+                    <span className="token-string">"React Native"</span>
+                    <span className="token-punctuation">, </span>
+                    <span className="token-string">"Expo"</span>
+                    <span className="token-punctuation">]</span>
+                    <span className="token-punctuation">,</span>
+                    {"\n"}
+                    {"  "}
+                    <span className="token-key">database</span>
+                    <span className="token-punctuation">:</span>{" "}
+                    <span className="token-punctuation">[</span>
+                    <span className="token-string">"MySQL"</span>
+                    <span className="token-punctuation">, </span>
+                    <span className="token-string">"PostgreSQL"</span>
+                    <span className="token-punctuation">]</span>
+                    {"\n"}
+                    <span className="token-punctuation">{`}`}</span>
+                    <span className="token-punctuation">;</span>
+                  </code>
+                </pre>
+
+                <div className="code-metrics">
+                  <div className="code-metric">
+                    <span className="code-metric-label">Foco</span>
+                    <strong>Interfaces e performance</strong>
+                  </div>
+                  <div className="code-metric">
+                    <span className="code-metric-label">Stack</span>
+                    <strong>Web, mobile e banco</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
       </section>
 
       <section className="card reveal delay-1">
@@ -233,7 +307,7 @@ export default function Home() {
         </h2>
         <p>
           No meu dia a dia, trabalho construindo interfaces web e mobile,
-          integrando com backends poderosos como Supabase e Firebase.
+          integrando com backends e bancos de dados como MySQL e PostgreSQL.
         </p>
 
         <div className="stack-grid">
@@ -349,14 +423,12 @@ export default function Home() {
             className="button button-outline"
           >
             <span className="button-content">
-              <img
-                className="linkedin-icon"
-                src="https://cdn.simpleicons.org/linkedin/0A66C2"
-                alt="LinkedIn"
-                width={18}
-                height={18}
-                loading="lazy"
-              />
+              <span className="linkedin-icon" style={{display:'inline-block',width:18,height:18,verticalAlign:'middle'}} aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none">
+                  <rect width="24" height="24" rx="4" fill="#0A66C2"/>
+                  <path d="M7.1 9.5H9.3V17H7.1V9.5ZM8.2 8.5C7.6 8.5 7.1 8 7.1 7.4C7.1 6.8 7.6 6.3 8.2 6.3C8.8 6.3 9.3 6.8 9.3 7.4C9.3 8 8.8 8.5 8.2 8.5ZM10.7 9.5H12.8V10.4H12.8C13.1 9.8 13.9 9.2 15 9.2C17.1 9.2 17.5 10.5 17.5 12.1V17H15.3V12.6C15.3 11.7 15.3 10.6 14.1 10.6C12.9 10.6 12.8 11.6 12.8 12.6V17H10.7V9.5Z" fill="white"/>
+                </svg>
+              </span>
               <span>LinkedIn</span>
             </span>
           </a>

@@ -1,5 +1,4 @@
 const eva = require("eva-icons");
-import { DotPatternDemo } from "./components/DotPatternDemo";
 import { NextSkillsAccordion } from "./components/NextSkillsAccordion";
 import { ProjectBriefForm } from "./components/ProjectBriefForm";
 import { SkillsBadges } from "./components/SkillsBadges";
@@ -16,7 +15,7 @@ const techStacks = [
     items: ["React Native", "Expo"]
   },
   {
-    category: "Backend / Bancos de Dados",
+    category: "Backend e Dados",
     icon: "hard-drive-outline",
     items: ["MySQL", "PostgreSQL", "PHP"]
   },
@@ -26,6 +25,80 @@ const techStacks = [
     items: ["JavaScript", "HTML", "CSS"]
   }
 ];
+
+const projects = [
+  {
+    name: "M2D Identity",
+    icon: "shield-outline",
+    description:
+      "Serviço central de identidade da plataforma M2D, um emissor OAuth 2.1 e OpenID Connect que dá login único aos produtos, com Authorization Code + PKCE, tokens assinados e publicação de chaves públicas (JWKS).",
+    stack: ["Fastify", "TypeScript", "Prisma", "PostgreSQL", "Redis"]
+  },
+  {
+    name: "M2D Console",
+    icon: "grid-outline",
+    description:
+      "Console central para administradores de organizações acompanharem produtos contratados, ambientes, acessos e permissões. É a porta de entrada dos produtos M2D, integrada ao Identity via OIDC.",
+    stack: ["Next.js", "React", "TypeScript", "OIDC"]
+  },
+  {
+    name: "M2D Connect",
+    icon: "message-circle-outline",
+    description:
+      "Plataforma própria de atendimento via WhatsApp, pensada para substituir uma ferramenta de terceiros. Reúne conversas, filas, bots e integrações, com processamento assíncrono de mensagens por workers.",
+    stack: ["NestJS", "Next.js", "PostgreSQL", "Prisma", "Redis", "BullMQ"]
+  },
+  {
+    name: "M2D Suporte",
+    icon: "headphones-outline",
+    description:
+      "Central para a equipe técnica receber, acompanhar e responder chamados dos produtos M2D, com painel web, API separada, sessões seguras por cookie httpOnly e atualização em tempo real.",
+    stack: ["Next.js", "Node.js", "PostgreSQL", "Prisma", "Socket.IO"]
+  },
+  {
+    name: "M2D RH",
+    icon: "people-outline",
+    description:
+      "Plataforma corporativa de recursos humanos com app mobile para ponto, documentos, comunicados e perfil, e portal de gestão para gestores e RH, com perfis de acesso por papel.",
+    stack: ["NestJS", "Next.js", "React Native", "Expo", "Prisma"]
+  },
+  {
+    name: "hClinic360 Clínica",
+    icon: "file-text-outline",
+    description:
+      "App mobile para profissionais e equipes clínicas, com agenda, fila do dia, atendimento, pacientes, prontuários e laboratório, além de notificações e biometria. Tem também um app companheiro para Apple Watch, em fase inicial.",
+    stack: ["Expo", "React Native", "TypeScript", "SwiftUI", "watchOS"]
+  },
+  {
+    name: "M2D Mobile",
+    icon: "heart-outline",
+    description:
+      "SaaS multi-tenant para operadoras de saúde: um portal white-label para configurar menus, cores, login e conteúdos, e um app mobile do beneficiário que consome essa configuração.",
+    stack: ["NestJS", "Next.js", "Expo", "React Native", "PostgreSQL"]
+  }
+];
+
+const devicon = (path: string) =>
+  `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${path}.svg`;
+
+// `mono` marca logos pretos, que ficam brancos no fundo escuro.
+const techLogos: Record<string, { src: string; mono?: boolean }> = {
+  Fastify: { src: devicon("fastify/fastify-original"), mono: true },
+  TypeScript: { src: devicon("typescript/typescript-original") },
+  Prisma: { src: devicon("prisma/prisma-original"), mono: true },
+  PostgreSQL: { src: devicon("postgresql/postgresql-original") },
+  Redis: { src: devicon("redis/redis-original") },
+  "Next.js": { src: devicon("nextjs/nextjs-original"), mono: true },
+  React: { src: devicon("react/react-original") },
+  OIDC: { src: "https://cdn.simpleicons.org/openid/F78C40" },
+  NestJS: { src: devicon("nestjs/nestjs-original") },
+  "Node.js": { src: devicon("nodejs/nodejs-original") },
+  "Socket.IO": { src: devicon("socketio/socketio-original"), mono: true },
+  "React Native": { src: devicon("react/react-original") },
+  Expo: { src: devicon("expo/expo-original"), mono: true },
+  SwiftUI: { src: devicon("swift/swift-original") },
+  watchOS: { src: devicon("apple/apple-original"), mono: true }
+};
 
 const tools = [
   {
@@ -83,11 +156,6 @@ const tools = [
     name: "Node.js",
     alt: "Mateus-Node",
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
-  },
-  {
-    name: "Vercel",
-    alt: "Mateus-Vercel",
-    src: "https://www.vectorlogo.zone/logos/vercel/vercel-icon.svg"
   },
   {
     name: "MySQL",
@@ -209,7 +277,6 @@ function EvaIcon({ name }: { name: string }) {
 export default function Home() {
   return (
     <main className="page">
-      <DotPatternDemo />
       <div className="background-glow background-glow-1" />
       <div className="background-glow background-glow-2" />
 
@@ -310,14 +377,71 @@ export default function Home() {
           integrando com backends e bancos de dados como MySQL e PostgreSQL.
         </p>
 
-        <div className="stack-grid">
+        <div className="stack-grid tech-grid">
           {techStacks.map((stack) => (
-            <article key={stack.category} className="stack-item">
-              <h3 className="title-row stack-title">
-                <EvaIcon name={stack.icon} />
-                <span>{stack.category}</span>
-              </h3>
-              <p>{stack.items.join(" | ")}</p>
+            <article key={stack.category} className="stack-item tech-card">
+              <header className="tech-card-header">
+                <span className="tech-card-icon" aria-hidden="true">
+                  <EvaIcon name={stack.icon} />
+                </span>
+                <h3 className="tech-card-title">{stack.category}</h3>
+              </header>
+              <ul className="tech-chips">
+                {stack.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="card reveal delay-1">
+        <h2 className="title-row">
+          <EvaIcon name="briefcase-outline" />
+          <span>Projetos em desenvolvimento</span>
+        </h2>
+        <p>
+          Produtos distintos da M2D Tech Solutions que venho construindo, cada
+          um com seu próprio propósito e público.
+        </p>
+
+        <div className="stack-grid projects-grid">
+          {projects.map((project) => (
+            <article key={project.name} className="stack-item project-card">
+              <header className="project-card-header">
+                <span className="tech-card-icon" aria-hidden="true">
+                  <EvaIcon name={project.icon} />
+                </span>
+                <div className="project-card-heading">
+                  <h3 className="tech-card-title">{project.name}</h3>
+                  <span className="project-status">Em desenvolvimento</span>
+                </div>
+              </header>
+              <p className="project-description">{project.description}</p>
+              <ul className="project-tags">
+                {project.stack.map((item) => {
+                  const logo = techLogos[item];
+
+                  return (
+                    <li key={item}>
+                      {logo ? (
+                        <img
+                          src={logo.src}
+                          alt=""
+                          width={16}
+                          height={16}
+                          loading="lazy"
+                          className={logo.mono ? "tag-logo tag-logo-mono" : "tag-logo"}
+                        />
+                      ) : (
+                        <EvaIcon name="layers-outline" />
+                      )}
+                      <span>{item}</span>
+                    </li>
+                  );
+                })}
+              </ul>
             </article>
           ))}
         </div>

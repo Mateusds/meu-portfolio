@@ -2,15 +2,25 @@
 
 import { FormEvent, useState } from "react";
 import { Send } from "lucide-react";
+import { BriefSelect } from "./BriefSelect";
 
 const whatsappNumber = "5582988059412";
+
+const projectTypes = [
+  "Landing Page",
+  "Site institucional",
+  "Sistema web",
+  "Aplicativo mobile",
+  "Manutenção ou melhorias"
+];
+
+const deadlines = ["O quanto antes", "Até 15 dias", "Até 30 dias", "Mais de 30 dias"];
 
 type FormData = {
   name: string;
   company: string;
   projectType: string;
   deadline: string;
-  budget: string;
   details: string;
 };
 
@@ -19,7 +29,6 @@ const initialForm: FormData = {
   company: "",
   projectType: "",
   deadline: "",
-  budget: "",
   details: ""
 };
 
@@ -42,7 +51,6 @@ export function ProjectBriefForm() {
       `Empresa/Marca: ${formData.company || "Não informado"}`,
       `Tipo de projeto: ${formData.projectType}`,
       `Prazo desejado: ${formData.deadline}`,
-      `Faixa de orçamento: ${formData.budget}`,
       "",
       "Detalhes do projeto:",
       formData.details,
@@ -81,51 +89,21 @@ export function ProjectBriefForm() {
           />
         </label>
 
-        <label className="brief-field">
-          <span>Tipo de projeto</span>
-          <select
-            value={formData.projectType}
-            onChange={(event) => updateField("projectType", event.target.value)}
-            required
-          >
-            <option value="">Selecione</option>
-            <option value="Landing Page">Landing Page</option>
-            <option value="Site institucional">Site institucional</option>
-            <option value="Sistema web">Sistema web</option>
-            <option value="Aplicativo mobile">Aplicativo mobile</option>
-            <option value="Manutenção ou melhorias">Manutenção ou melhorias</option>
-          </select>
-        </label>
+        <BriefSelect
+          label="Tipo de projeto"
+          value={formData.projectType}
+          options={projectTypes}
+          onChange={(value) => updateField("projectType", value)}
+          required
+        />
 
-        <label className="brief-field">
-          <span>Prazo desejado</span>
-          <select
-            value={formData.deadline}
-            onChange={(event) => updateField("deadline", event.target.value)}
-            required
-          >
-            <option value="">Selecione</option>
-            <option value="O quanto antes">O quanto antes</option>
-            <option value="Até 15 dias">Até 15 dias</option>
-            <option value="Até 30 dias">Até 30 dias</option>
-            <option value="Mais de 30 dias">Mais de 30 dias</option>
-          </select>
-        </label>
-
-        <label className="brief-field">
-          <span>Faixa de orçamento</span>
-          <select
-            value={formData.budget}
-            onChange={(event) => updateField("budget", event.target.value)}
-            required
-          >
-            <option value="">Selecione</option>
-            <option value="Até R$ 1.000">Até R$ 1.000</option>
-            <option value="R$ 1.000 a R$ 3.000">R$ 1.000 a R$ 3.000</option>
-            <option value="R$ 3.000 a R$ 5.000">R$ 3.000 a R$ 5.000</option>
-            <option value="Acima de R$ 5.000">Acima de R$ 5.000</option>
-          </select>
-        </label>
+        <BriefSelect
+          label="Prazo desejado"
+          value={formData.deadline}
+          options={deadlines}
+          onChange={(value) => updateField("deadline", value)}
+          required
+        />
 
         <label className="brief-field brief-field-full">
           <span>O que você deseja para o projeto?</span>

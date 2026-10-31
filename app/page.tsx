@@ -517,24 +517,6 @@ export default function Home() {
         <ProjectBriefForm />
         <div className="cta-actions">
           <a
-            href="https://wa.me/5582988059412"
-            target="_blank"
-            rel="noreferrer"
-            className="button button-whatsapp"
-          >
-            <span className="button-content">
-              <img
-                className="whatsapp-icon"
-                src="https://cdn.simpleicons.org/whatsapp/ffffff"
-                alt="WhatsApp"
-                width={18}
-                height={18}
-                loading="lazy"
-              />
-              <span>Falar no WhatsApp</span>
-            </span>
-          </a>
-          <a
             href="https://github.com/Mateusds"
             target="_blank"
             rel="noreferrer"

@@ -1,30 +1,6 @@
 const eva = require("eva-icons");
-import { NextSkillsAccordion } from "./components/NextSkillsAccordion";
 import { ProjectBriefForm } from "./components/ProjectBriefForm";
 import { SkillsBadges } from "./components/SkillsBadges";
-
-const techStacks = [
-  {
-    category: "Web",
-    icon: "layout-outline",
-    items: ["React.js", "Next.js", "TypeScript"]
-  },
-  {
-    category: "Mobile",
-    icon: "smartphone-outline",
-    items: ["React Native", "Expo"]
-  },
-  {
-    category: "Backend e Dados",
-    icon: "hard-drive-outline",
-    items: ["MySQL", "PostgreSQL", "PHP"]
-  },
-  {
-    category: "Linguagens",
-    icon: "edit-outline",
-    items: ["JavaScript", "HTML", "CSS"]
-  }
-];
 
 const projects = [
   {
@@ -66,8 +42,8 @@ const projects = [
     name: "hClinic360 Clínica",
     icon: "file-text-outline",
     description:
-      "App mobile para profissionais e equipes clínicas, com agenda, fila do dia, atendimento, pacientes, prontuários e laboratório, além de notificações e biometria. Tem também um app companheiro para Apple Watch, em fase inicial.",
-    stack: ["Expo", "React Native", "TypeScript", "SwiftUI", "watchOS"]
+      "App mobile para profissionais e equipes clínicas, com agenda, fila do dia, atendimento, pacientes e prontuários, além de notificações e biometria.",
+    stack: ["Expo", "React Native", "TypeScript"]
   },
   {
     name: "M2D Mobile",
@@ -95,9 +71,7 @@ const techLogos: Record<string, { src: string; mono?: boolean }> = {
   "Node.js": { src: devicon("nodejs/nodejs-original") },
   "Socket.IO": { src: devicon("socketio/socketio-original"), mono: true },
   "React Native": { src: devicon("react/react-original") },
-  Expo: { src: devicon("expo/expo-original"), mono: true },
-  SwiftUI: { src: devicon("swift/swift-original") },
-  watchOS: { src: devicon("apple/apple-original"), mono: true }
+  Expo: { src: devicon("expo/expo-original"), mono: true }
 };
 
 const tools = [
@@ -179,62 +153,79 @@ const tools = [
   }
 ];
 
-const nextSkills = [
+const services = [
   {
-    title: "SSR, SSG e ISR",
+    title: "Landing Page",
+    icon: "browser-outline",
     description:
-      "Entendo quando usar renderização no servidor, geração estática ou regeneração incremental para equilibrar performance, cache e atualização de conteúdo.",
-    example:
-      "Exemplo: usar ISR em uma página de catálogo para atualizar produtos automaticamente sem rebuild completo."
+      "Uma página única e direta para divulgar um produto, serviço ou campanha e levar o visitante a entrar em contato."
   },
   {
-    title: "App Router e Nested Layouts",
+    title: "Site institucional",
+    icon: "globe-outline",
     description:
-      "Consigo estruturar rotas com o App Router, reaproveitando layouts aninhados para manter a navegação organizada e escalável.",
-    example:
-      "Exemplo: criar um layout global com menu e um layout interno apenas para a área administrativa."
+      "O site da sua empresa ou do seu trabalho, com várias páginas, visual cuidado e navegação fácil em qualquer tela."
   },
   {
-    title: "Server Components e Client Components",
+    title: "Sistema web",
+    icon: "monitor-outline",
     description:
-      "Separo componentes de servidor e cliente conforme a necessidade da interface, reduzindo JavaScript no navegador e melhorando carregamento.",
-    example:
-      "Exemplo: buscar dados no servidor e deixar somente o formulário ou modal como componente cliente."
+      "Painéis e sistemas sob medida para organizar dados, processos e a rotina do seu negócio, direto no navegador."
   },
   {
-    title: "Route Handlers e APIs",
+    title: "Aplicativo mobile",
+    icon: "smartphone-outline",
     description:
-      "Crio endpoints no próprio Next.js para formulários, integrações e regras simples de backend, mantendo o projeto centralizado.",
-    example:
-      "Exemplo: receber dados de um formulário de contato em /api/contact e encaminhar para um serviço externo."
+      "Apps para Android e iOS feitos com React Native e Expo, com um só código para as duas plataformas."
+  }
+];
+
+const processSteps = [
+  {
+    title: "Briefing e conversa",
+    description:
+      "Entendo seu objetivo, seu público e seu prazo, a partir do formulário e de uma conversa."
   },
   {
-    title: "Otimização de performance e cache",
+    title: "Proposta e prazo",
     description:
-      "Aplico boas práticas como carregamento eficiente, redução de requests desnecessários e uso consciente de cache para interfaces mais rápidas.",
-    example:
-      "Exemplo: evitar buscas repetidas, otimizar imagens e definir cache para melhorar o tempo de carregamento."
+      "Você recebe o que será feito, o valor e o cronograma antes de qualquer código."
   },
   {
-    title: "SEO técnico (metadata, sitemap, robots)",
+    title: "Layout e protótipo",
     description:
-      "Configuro metadata, sitemap e robots para melhorar indexação, compartilhamento e visibilidade das páginas nos buscadores.",
-    example:
-      "Exemplo: definir title e description por página e gerar sitemap.xml para ajudar na indexação."
+      "Mostro como vai ficar antes de programar, para você aprovar o visual."
   },
   {
-    title: "Integração com bancos de dados e APIs",
+    title: "Desenvolvimento com entregas parciais",
     description:
-      "Faço integrações com autenticação, banco de dados e serviços externos usando MySQL, PostgreSQL e PHP conforme a necessidade do projeto.",
-    example:
-      "Exemplo: autenticar usuários e salvar dados em MySQL ou PostgreSQL para dashboards ou painéis."
+      "Você acompanha o andamento e pode opinar ao longo do caminho, sem esperar até o fim."
   },
   {
-    title: "Deploy com GitHub Actions e Pages",
+    title: "Publicação e suporte",
     description:
-      "Tenho familiaridade com fluxos de deploy automatizado e versionamento para publicar atualizações com mais segurança e consistência.",
-    example:
-      "Exemplo: configurar uma action para publicar automaticamente a aplicação após push na branch principal."
+      "Coloco no ar e continuo disponível para ajustes depois da entrega."
+  }
+];
+
+const differentials = [
+  {
+    title: "Site rápido",
+    icon: "flash-outline",
+    description:
+      "Páginas leves, com imagens e código otimizados, para abrir rápido até em conexões mais lentas."
+  },
+  {
+    title: "Responsivo",
+    icon: "layout-outline",
+    description:
+      "O layout se adapta a celular, tablet e computador, sem perder legibilidade."
+  },
+  {
+    title: "Suporte pós-entrega",
+    icon: "headphones-outline",
+    description:
+      "Depois que o projeto vai ao ar, continuo por perto para tirar dúvidas e fazer os ajustes necessários."
   }
 ];
 
@@ -369,35 +360,6 @@ export default function Home() {
 
       <section className="card reveal delay-1">
         <h2 className="title-row">
-          <EvaIcon name="code-outline" />
-          <span>Tecnologias que utilizo</span>
-        </h2>
-        <p>
-          No meu dia a dia, trabalho construindo interfaces web e mobile,
-          integrando com backends e bancos de dados como MySQL e PostgreSQL.
-        </p>
-
-        <div className="stack-grid tech-grid">
-          {techStacks.map((stack) => (
-            <article key={stack.category} className="stack-item tech-card">
-              <header className="tech-card-header">
-                <span className="tech-card-icon" aria-hidden="true">
-                  <EvaIcon name={stack.icon} />
-                </span>
-                <h3 className="tech-card-title">{stack.category}</h3>
-              </header>
-              <ul className="tech-chips">
-                {stack.items.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="card reveal delay-1">
-        <h2 className="title-row">
           <EvaIcon name="briefcase-outline" />
           <span>Projetos em desenvolvimento</span>
         </h2>
@@ -457,16 +419,66 @@ export default function Home() {
 
       <section className="card reveal delay-3">
         <h2 className="title-row">
-          <EvaIcon name="layers-outline" />
-          <span>Habilidades Next.js</span>
+          <EvaIcon name="briefcase-outline" />
+          <span>O que eu faço</span>
         </h2>
         <p>
-          Competências que aplico no desenvolvimento de projetos com Next.js.
+          Crio sites e aplicativos do zero, do primeiro rascunho até o ar.
         </p>
-        <NextSkillsAccordion skills={nextSkills} />
+        <div className="stack-grid services-grid">
+          {services.map((service) => (
+            <article key={service.title} className="stack-item service-card">
+              <span className="tech-card-icon" aria-hidden="true">
+                <EvaIcon name={service.icon} />
+              </span>
+              <h3 className="tech-card-title">{service.title}</h3>
+              <p>{service.description}</p>
+            </article>
+          ))}
+        </div>
       </section>
 
-      <section className="card reveal delay-4">
+      <section className="card reveal delay-3">
+        <h2 className="title-row">
+          <EvaIcon name="compass-outline" />
+          <span>Como eu trabalho</span>
+        </h2>
+        <p>
+          Um caminho simples, com você participando de cada etapa.
+        </p>
+        <ol className="process-list">
+          {processSteps.map((step, index) => (
+            <li key={step.title} className="process-step">
+              <span className="process-number" aria-hidden="true">
+                {index + 1}
+              </span>
+              <h3 className="tech-card-title">{step.title}</h3>
+              <p>{step.description}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section className="card reveal delay-3">
+        <h2 className="title-row">
+          <EvaIcon name="star-outline" />
+          <span>Diferenciais</span>
+        </h2>
+        <p>O que você pode esperar em todo projeto que eu entrego.</p>
+        <div className="stack-grid differentials-grid">
+          {differentials.map((item) => (
+            <article key={item.title} className="stack-item service-card">
+              <span className="tech-card-icon" aria-hidden="true">
+                <EvaIcon name={item.icon} />
+              </span>
+              <h3 className="tech-card-title">{item.title}</h3>
+              <p>{item.description}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {/* <section className="card reveal delay-4">
         <h2 className="title-row">
           <EvaIcon name="book-open-outline" />
           <span>Cursos e Formação Complementar</span>
@@ -483,7 +495,7 @@ export default function Home() {
             </article>
           ))}
         </div>
-      </section>
+      </section> */}
 
       {/* <section className="card reveal delay-5">
         <h2 className="title-row">

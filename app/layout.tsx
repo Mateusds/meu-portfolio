@@ -1,5 +1,16 @@
 import type { Metadata } from "next";
+import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
+import { AnchorScroll } from "./components/AnchorScroll";
+import { MobileMenu } from "./components/MobileMenu";
+import { ThemeToggle } from "./components/ThemeToggle";
+import { THEME_STORAGE_KEY } from "@/lib/theme/theme-key";
+
+const font = Space_Grotesk({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-text"
+});
 
 const siteUrl = "https://mateusmarquesds.com";
 const siteName = "Mateus Marques";
@@ -113,19 +124,31 @@ const jsonLd = {
   ]
 };
 
+// Antes da primeira pintura: aplica o tema salvo (sem piscar) e liga a entrada animada das seções.
+// Se a animação não iniciar em 3 s, o CSS mostra tudo (reveal-fallback).
+const bootScript = `(function(){var d=document.documentElement;try{var t=localStorage.getItem(${JSON.stringify(
+  THEME_STORAGE_KEY
+)});if(t==="light"||t==="dark")d.dataset.theme=t}catch(e){}if("scrollRestoration" in history)history.scrollRestoration="manual";d.classList.add("js");setTimeout(function(){d.classList.add("reveal-fallback")},3000)})()`;
+
 export default function RootLayout({
   children
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR" data-theme="dark" className={font.variable} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: bootScript }} />
+      </head>
       <body>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         {children}
+        <AnchorScroll />
+        <MobileMenu />
+        <ThemeToggle />
       </body>
     </html>
   );

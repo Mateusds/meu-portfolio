@@ -1,6 +1,7 @@
-const eva = require("eva-icons");
+import { Code2, ArrowRight, ChevronDown } from "lucide-react";
 import { ProjectBriefForm } from "./components/ProjectBriefForm";
-import { SkillsBadges } from "./components/SkillsBadges";
+import { ProjectsCarousel } from "./components/ProjectsCarousel";
+import { RevealObserver } from "./components/RevealObserver";
 
 const projects = [
   {
@@ -53,26 +54,6 @@ const projects = [
     stack: ["NestJS", "Next.js", "Expo", "React Native", "PostgreSQL"]
   }
 ];
-
-const devicon = (path: string) =>
-  `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${path}.svg`;
-
-// `mono` marca logos pretos, que ficam brancos no fundo escuro.
-const techLogos: Record<string, { src: string; mono?: boolean }> = {
-  Fastify: { src: devicon("fastify/fastify-original"), mono: true },
-  TypeScript: { src: devicon("typescript/typescript-original") },
-  Prisma: { src: devicon("prisma/prisma-original"), mono: true },
-  PostgreSQL: { src: devicon("postgresql/postgresql-original") },
-  Redis: { src: devicon("redis/redis-original") },
-  "Next.js": { src: devicon("nextjs/nextjs-original"), mono: true },
-  React: { src: devicon("react/react-original") },
-  OIDC: { src: "https://cdn.simpleicons.org/openid/F78C40" },
-  NestJS: { src: devicon("nestjs/nestjs-original") },
-  "Node.js": { src: devicon("nodejs/nodejs-original") },
-  "Socket.IO": { src: devicon("socketio/socketio-original"), mono: true },
-  "React Native": { src: devicon("react/react-original") },
-  Expo: { src: devicon("expo/expo-original"), mono: true }
-};
 
 const tools = [
   {
@@ -208,26 +189,46 @@ const processSteps = [
   }
 ];
 
-const differentials = [
-  {
-    title: "Site rápido",
-    icon: "flash-outline",
-    description:
-      "Páginas leves, com imagens e código otimizados, para abrir rápido até em conexões mais lentas."
-  },
-  {
-    title: "Responsivo",
-    icon: "layout-outline",
-    description:
-      "O layout se adapta a celular, tablet e computador, sem perder legibilidade."
-  },
-  {
-    title: "Suporte pós-entrega",
-    icon: "headphones-outline",
-    description:
-      "Depois que o projeto vai ao ar, continuo por perto para tirar dúvidas e fazer os ajustes necessários."
-  }
+// Quem faz cada etapa do processo, na mesma ordem de processSteps.
+const processWho = ["Nós dois", "Eu envio", "Você aprova", "Você acompanha", "Eu entrego"];
+
+// Logos pretos ficam brancos no tema escuro.
+const monoTools = new Set(["Next.js", "GitHub", "Prisma", "Expo", "MySQL"]);
+
+const delay = (step: number) => ({ "--d": `${step * 90}ms` }) as React.CSSProperties;
+
+const navLinks = [
+  { href: "#inicio", label: "Início" },
+  { href: "#sobre", label: "Sobre" },
+  { href: "#servicos", label: "Serviços" },
+  { href: "#projetos", label: "Projetos" },
+  { href: "#processo", label: "Processo" },
+  { href: "#contato", label: "Contato" }
 ];
+
+const socials = [
+  { href: "https://github.com/Mateusds", label: "GitHub", icon: "github/github-original" },
+  { href: "https://www.linkedin.com/", label: "LinkedIn", icon: "linkedin/linkedin-plain" }
+];
+
+function Socials() {
+  return (
+    <div className="socials">
+      {socials.map((social) => (
+        <a key={social.label} href={social.href} target="_blank" rel="noreferrer" aria-label={social.label}>
+          <img
+            className="icon-mono"
+            src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${social.icon}.svg`}
+            alt=""
+            width={18}
+            height={18}
+            loading="lazy"
+          />
+        </a>
+      ))}
+    </div>
+  );
+}
 
 const courses = [
   {
@@ -242,348 +243,244 @@ const courses = [
   }
 ];
 
-function EvaIcon({ name }: { name: string }) {
-  const icon = eva.icons[name];
-
-  if (!icon) {
-    return <span className="eva-placeholder" aria-hidden="true" />;
-  }
-
-  return (
-    <span
-      className="eva-icon"
-      aria-hidden="true"
-      suppressHydrationWarning
-      dangerouslySetInnerHTML={{
-        __html: icon.toSvg({
-          fill: "currentColor",
-          width: "18",
-          height: "18"
-        })
-      }}
-    />
-  );
-}
-
 export default function Home() {
   return (
-    <main className="page">
-      <div className="background-glow background-glow-1" />
-      <div className="background-glow background-glow-2" />
+    <>
+      <RevealObserver />
 
-      <section className="hero card reveal">
-        <div className="hero-layout">
+      <header id="inicio" className="hero">
+        <div className="wrap">
+          <nav className="nav" aria-label="Principal">
+            <a className="brand" href="#inicio">
+              <Code2 size={22} aria-hidden="true" />
+              Mateus Marques
+            </a>
+            <div className="nav-links">
+              {navLinks.map((link) => (
+                <a key={link.href} href={link.href}>
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          </nav>
+        </div>
+
+        <div className="wrap hero-grid">
           <div className="hero-copy">
-            <h1 className="typing-title">
-              <span className="typing-line">
-                Olá, sou <span className="typing-name">Mateus Marques</span>
-              </span>
+            <span className="hero-bar" aria-hidden="true" />
+            <h1>
+              <span className="line">Olá, sou o Mateus,</span>
+              <span className="line">desenvolvedor</span>
+              <span className="line">Front‑end e Mobile</span>
             </h1>
-            <p className="lead">
-              Desenvolvedor <strong>Front-end e Mobile</strong> de{" "}
-              <strong>Alagoas, Brasil</strong>, apaixonado por tecnologia e inovação.
-              Foco em criar aplicações modernas{" "}
-              <span className="lead-nowrap">e performáticas.</span>
+            <p className="hero-text">
+              Transformo ideias em sites, sistemas web e aplicativos modernos, rápidos e fáceis de
+              usar.
             </p>
+            <a className="hero-down" href="#sobre" aria-label="Rolar para a próxima seção">
+              <ChevronDown size={26} aria-hidden="true" />
+            </a>
           </div>
 
-          <aside className="hero-code-panel" aria-label="Visual de programação">
-            <div className="code-window">
-              <div className="code-window-header">
-                <span className="code-window-dots" aria-hidden="true">
-                  <span />
-                  <span />
-                  <span />
-                </span>
-                <span className="code-window-title">stack.ts</span>
-              </div>
+          <img
+            className="hero-portrait"
+            src="/mateus-sem-fundo.webp"
+            alt="Mateus Marques, desenvolvedor Front-end e Mobile"
+            width={952}
+            height={1400}
+            fetchPriority="high"
+            decoding="async"
+          />
 
-              <div className="code-window-body">
-                <pre className="code-snippet">
-                  <code>
-                    <span className="token-keyword">const</span>{" "}
-                    <span className="token-identifier">stack</span>{" "}
-                    <span className="token-operator">=</span>{" "}
-                    <span className="token-punctuation">{`{`}</span>
-                    {"\n"}
-                    {"  "}
-                    <span className="token-key">frontend</span>
-                    <span className="token-punctuation">:</span>{" "}
-                    <span className="token-punctuation">[</span>
-                    <span className="token-string">"React"</span>
-                    <span className="token-punctuation">, </span>
-                    <span className="token-string">"Next.js"</span>
-                    <span className="token-punctuation">, </span>
-                    <span className="token-string">"TypeScript"</span>
-                    <span className="token-punctuation">]</span>
-                    <span className="token-punctuation">,</span>
-                    {"\n"}
-                    {"  "}
-                    <span className="token-key">mobile</span>
-                    <span className="token-punctuation">:</span>{" "}
-                    <span className="token-punctuation">[</span>
-                    <span className="token-string">"React Native"</span>
-                    <span className="token-punctuation">, </span>
-                    <span className="token-string">"Expo"</span>
-                    <span className="token-punctuation">]</span>
-                    <span className="token-punctuation">,</span>
-                    {"\n"}
-                    {"  "}
-                    <span className="token-key">database</span>
-                    <span className="token-punctuation">:</span>{" "}
-                    <span className="token-punctuation">[</span>
-                    <span className="token-string">"MySQL"</span>
-                    <span className="token-punctuation">, </span>
-                    <span className="token-string">"PostgreSQL"</span>
-                    <span className="token-punctuation">]</span>
-                    {"\n"}
-                    <span className="token-punctuation">{`}`}</span>
-                    <span className="token-punctuation">;</span>
-                  </code>
-                </pre>
-
-                <div className="code-metrics">
-                  <div className="code-metric">
-                    <span className="code-metric-label">Foco</span>
-                    <strong>Interfaces e performance</strong>
-                  </div>
-                  <div className="code-metric">
-                    <span className="code-metric-label">Stack</span>
-                    <strong>Web, mobile e banco</strong>
-                  </div>
-                </div>
-              </div>
+          <aside className="hero-side">
+            <div className="side-block">
+              <h2 className="side-label">Sobre mim</h2>
+              <p>
+                Desenvolvedor front-end e mobile de Alagoas. Atuo com React, Next.js, React Native
+                e TypeScript, criando sites, sistemas web e aplicativos modernos, rápidos e
+                responsivos. Hoje também construo produtos da M2D Tech Solutions, do login único ao
+                atendimento.
+              </p>
+              <a className="arrow-link" href="#sobre">
+                Saiba mais <ArrowRight size={14} aria-hidden="true" />
+              </a>
+            </div>
+            <div className="side-block">
+              <h2 className="side-label">Meus projetos</h2>
+              <p>
+                Produtos da M2D Tech Solutions que venho construindo, cada um com seu próprio
+                propósito.
+              </p>
+              <a className="arrow-link" href="#projetos">
+                Ver projetos <ArrowRight size={14} aria-hidden="true" />
+              </a>
+            </div>
+            <div className="side-block">
+              <h2 className="side-label">Siga-me</h2>
+              <Socials />
             </div>
           </aside>
         </div>
-      </section>
+      </header>
 
-      <section className="card reveal delay-1">
-        <h2 className="title-row">
-          <EvaIcon name="briefcase-outline" />
-          <span>Projetos em desenvolvimento</span>
-        </h2>
-        <p>
-          Produtos distintos da M2D Tech Solutions que venho construindo, cada
-          um com seu próprio propósito e público.
-        </p>
+      <main>
+        <section id="sobre" className="section section-alt">
+          <div className="wrap">
+            <div className="about">
+              <div className="about-copy" data-reveal>
+                <p className="label">
+                  <span>/</span> Sobre mim
+                </p>
+                <h2>Construo produtos que abrem rápido e funcionam em qualquer tela</h2>
+                <p>
+                  Entrego sites e aplicativos pensados para abrir rápido, mesmo em conexões mais
+                  lentas, com imagens e código leves. Tudo se adapta ao celular, ao tablet e ao
+                  computador. Depois que o projeto vai ao ar, continuo por perto para tirar dúvidas
+                  e fazer os ajustes necessários.
+                </p>
+                <a className="arrow-link" href="#contato">
+                  Falar comigo <ArrowRight size={14} aria-hidden="true" />
+                </a>
+              </div>
 
-        <div className="stack-grid projects-grid">
-          {projects.map((project) => (
-            <article key={project.name} className="stack-item project-card">
-              <header className="project-card-header">
-                <span className="tech-card-icon" aria-hidden="true">
-                  <EvaIcon name={project.icon} />
-                </span>
-                <div className="project-card-heading">
-                  <h3 className="tech-card-title">{project.name}</h3>
-                  <span className="project-status">Em desenvolvimento</span>
+              <div className="stats" data-reveal style={delay(1)}>
+                <div className="stat">
+                  <strong>{projects.length}</strong>
+                  <span>Produtos em desenvolvimento</span>
                 </div>
-              </header>
-              <p className="project-description">{project.description}</p>
-              <ul className="project-tags">
-                {project.stack.map((item) => {
-                  const logo = techLogos[item];
+                <div className="stat">
+                  <strong>{services.length}</strong>
+                  <span>Tipos de serviço</span>
+                </div>
+                <div className="stat">
+                  <strong>{processSteps.length}</strong>
+                  <span>Etapas do meu processo</span>
+                </div>
+              </div>
+            </div>
 
-                  return (
-                    <li key={item}>
-                      {logo ? (
+            <div className="tech" data-reveal>
+              <p className="tech-title">Trabalho com</p>
+              <div className="marquee">
+                <ul className="marquee-track">
+                  {/* A lista aparece duas vezes para o movimento fechar o ciclo sem emendas. */}
+                  {[0, 1].map((copy) =>
+                    tools.map((tool) => (
+                      <li key={`${copy}-${tool.name}`} className="tech-item" aria-hidden={copy === 1}>
                         <img
-                          src={logo.src}
+                          className={monoTools.has(tool.name) ? "icon-mono" : undefined}
+                          src={tool.src}
                           alt=""
-                          width={16}
-                          height={16}
+                          width={26}
+                          height={26}
                           loading="lazy"
-                          className={logo.mono ? "tag-logo tag-logo-mono" : "tag-logo"}
                         />
-                      ) : (
-                        <EvaIcon name="layers-outline" />
-                      )}
-                      <span>{item}</span>
-                    </li>
-                  );
-                })}
-              </ul>
-            </article>
-          ))}
+                        {tool.name}
+                      </li>
+                    ))
+                  )}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="servicos" className="section">
+          <div className="wrap">
+            <div data-reveal>
+              <p className="label">
+                <span>/</span> O que eu faço
+              </p>
+              <h2>Do primeiro rascunho até o ar</h2>
+            </div>
+            <ul className="cards">
+              {services.map((service, index) => (
+                <li key={service.title} className="card" data-reveal style={delay(index)}>
+                  <h3>{service.title}</h3>
+                  <p>{service.description}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <section id="projetos" className="section section-alt">
+          <div className="wrap" data-reveal>
+            <ProjectsCarousel
+              projects={projects.map(({ name, description, stack }) => ({ name, description, stack }))}
+            >
+              <p className="label">
+                <span>/</span> Projetos
+              </p>
+              <h2>Projetos em desenvolvimento</h2>
+            </ProjectsCarousel>
+          </div>
+        </section>
+
+        <section id="processo" className="section">
+          <div className="wrap">
+            <div data-reveal>
+              <p className="label">
+                <span>/</span> Como eu trabalho
+              </p>
+              <h2>Um caminho simples, com você em cada etapa</h2>
+            </div>
+            <ol className="steps">
+              {processSteps.map((step, index) => (
+                <li key={step.title} className="card" data-reveal style={delay(index % 3)}>
+                  <span className="step-number">{String(index + 1).padStart(2, "0")}</span>
+                  <h3>{step.title}</h3>
+                  <p>{step.description}</p>
+                  <p className="card-foot">{processWho[index]}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+
+        {/* Cursos e Formação Complementar: escondido por enquanto. Os dados estão em `courses`.
+        <section id="cursos" className="section section-alt">
+          <div className="wrap">
+            <p className="label"><span>/</span> Formação</p>
+            <h2>Cursos e formação complementar</h2>
+            <ul className="cards">
+              {courses.map((course) => (
+                <li key={course.title} className="card">
+                  <h3>{course.title}</h3>
+                  <p>{course.summary}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+        */}
+
+        <section id="contato" className="section section-alt">
+          <div className="wrap contact">
+            <div className="contact-copy" data-reveal>
+              <p className="label">
+                <span>/</span> Contato
+              </p>
+              <h2>Vamos conversar sobre seu projeto</h2>
+              <p>
+                Se você precisa de uma interface moderna, performática e responsiva, estou pronto
+                para colaborar no seu produto.
+              </p>
+              <Socials />
+            </div>
+            <div className="panel" data-reveal style={delay(1)}>
+              <ProjectBriefForm />
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer className="footer">
+        <div className="wrap footer-row">
+          <span>© 2026 Mateus Marques</span>
+          <span>Alagoas, Brasil</span>
         </div>
-      </section>
-
-      <section className="card reveal delay-2">
-        <h2 className="title-row">
-          <EvaIcon name="award-outline" />
-          <span>Habilidades e Ferramentas</span>
-        </h2>
-        <SkillsBadges tools={tools} />
-      </section>
-
-      <section className="card reveal delay-3">
-        <h2 className="title-row">
-          <EvaIcon name="briefcase-outline" />
-          <span>O que eu faço</span>
-        </h2>
-        <p>
-          Crio sites e aplicativos do zero, do primeiro rascunho até o ar.
-        </p>
-        <div className="stack-grid services-grid">
-          {services.map((service) => (
-            <article key={service.title} className="stack-item service-card">
-              <span className="tech-card-icon" aria-hidden="true">
-                <EvaIcon name={service.icon} />
-              </span>
-              <h3 className="tech-card-title">{service.title}</h3>
-              <p>{service.description}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="card reveal delay-3">
-        <h2 className="title-row">
-          <EvaIcon name="compass-outline" />
-          <span>Como eu trabalho</span>
-        </h2>
-        <p>
-          Um caminho simples, com você participando de cada etapa.
-        </p>
-        <ol className="process-list">
-          {processSteps.map((step, index) => (
-            <li key={step.title} className="process-step">
-              <span className="process-number" aria-hidden="true">
-                {index + 1}
-              </span>
-              <h3 className="tech-card-title">{step.title}</h3>
-              <p>{step.description}</p>
-            </li>
-          ))}
-        </ol>
-      </section>
-
-      <section className="card reveal delay-3">
-        <h2 className="title-row">
-          <EvaIcon name="star-outline" />
-          <span>Diferenciais</span>
-        </h2>
-        <p>O que você pode esperar em todo projeto que eu entrego.</p>
-        <div className="stack-grid differentials-grid">
-          {differentials.map((item) => (
-            <article key={item.title} className="stack-item service-card">
-              <span className="tech-card-icon" aria-hidden="true">
-                <EvaIcon name={item.icon} />
-              </span>
-              <h3 className="tech-card-title">{item.title}</h3>
-              <p>{item.description}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      {/* <section className="card reveal delay-4">
-        <h2 className="title-row">
-          <EvaIcon name="book-open-outline" />
-          <span>Cursos e Formação Complementar</span>
-        </h2>
-        <p>
-          Estudos voltados para infraestrutura, administração de servidores e
-          fundamentos de cloud.
-        </p>
-        <div className="stack-grid">
-          {courses.map((course) => (
-            <article key={course.title} className="stack-item">
-              <h3>{course.title}</h3>
-              <p>{course.summary}</p>
-            </article>
-          ))}
-        </div>
-      </section> */}
-
-      {/* <section className="card reveal delay-5">
-        <h2 className="title-row">
-          <EvaIcon name="shuffle-outline" />
-          <span>Fluxo de Integracoes</span>
-        </h2>
-        <p>Conexoes animadas entre ferramentas usando Animated Beam.</p>
-        <AnimatedBeamDemo />
-      </section> */}
-
-      {/* <InteractiveSections /> */}
-
-      <section className="card reveal delay-4 cta-card">
-        <h2>Vamos conversar sobre seu projeto</h2>
-        <p>
-          Se você precisa de uma interface moderna, performática e responsiva,
-          estou pronto para colaborar no seu produto.
-        </p>
-        <ProjectBriefForm />
-        <div className="cta-actions">
-          <a
-            href="https://github.com/Mateusds"
-            target="_blank"
-            rel="noreferrer"
-            className="button button-github"
-          >
-            <span className="button-content">
-              <img
-                className="github-icon"
-                src="https://cdn.simpleicons.org/github/ffffff"
-                alt="GitHub"
-                width={18}
-                height={18}
-                loading="lazy"
-              />
-              <span>GitHub</span>
-            </span>
-          </a>
-          <a
-            href="https://www.linkedin.com/"
-            target="_blank"
-            rel="noreferrer"
-            className="button button-outline"
-          >
-            <span className="button-content">
-              <span className="linkedin-icon" style={{display:'inline-block',width:18,height:18,verticalAlign:'middle'}} aria-hidden="true">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none">
-                  <rect width="24" height="24" rx="4" fill="#0A66C2"/>
-                  <path d="M7.1 9.5H9.3V17H7.1V9.5ZM8.2 8.5C7.6 8.5 7.1 8 7.1 7.4C7.1 6.8 7.6 6.3 8.2 6.3C8.8 6.3 9.3 6.8 9.3 7.4C9.3 8 8.8 8.5 8.2 8.5ZM10.7 9.5H12.8V10.4H12.8C13.1 9.8 13.9 9.2 15 9.2C17.1 9.2 17.5 10.5 17.5 12.1V17H15.3V12.6C15.3 11.7 15.3 10.6 14.1 10.6C12.9 10.6 12.8 11.6 12.8 12.6V17H10.7V9.5Z" fill="white"/>
-                </svg>
-              </span>
-              <span>LinkedIn</span>
-            </span>
-          </a>
-          <a href="mailto:mateus@email.com" className="button">
-            <span className="button-content">
-              <img
-                className="gmail-icon"
-                src="https://cdn.simpleicons.org/gmail/EA4335"
-                alt="Gmail"
-                width={18}
-                height={18}
-                loading="lazy"
-              />
-              <span>Enviar Email</span>
-            </span>
-          </a>
-        </div>
-      </section>
-
-      {/* <footer className="footer reveal delay-4">
-        <nav className="footer-links" aria-label="Links rapidos">
-          <a href="https://github.com/Mateusds" target="_blank" rel="noreferrer">
-            GitHub
-          </a>
-          <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">
-            LinkedIn
-          </a>
-          <a href="mailto:mateus@email.com">Email</a>
-          <a href="https://wa.me/5582988059412" target="_blank" rel="noreferrer">
-            WhatsApp
-          </a>
-        </nav>
-        <p className="footer-copy">
-          © {new Date().getFullYear()} Mateus Marques. Todos os direitos
-          reservados.
-        </p>
-      </footer> */}
-    </main>
+      </footer>
+    </>
   );
 }

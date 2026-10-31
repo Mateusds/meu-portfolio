@@ -117,9 +117,9 @@ export function ProjectBriefForm() {
         </label>
       </div>
 
-      <div className="brief-actions" style={{ display: 'flex', justifyContent: 'flex-end' }}>
-        <button type="submit" className="button button-whatsapp brief-submit">
-          <Send size={18} style={{ marginRight: '8px' }} />
+      <div className="brief-actions">
+        <button type="submit" className="button">
+          <Send size={18} aria-hidden="true" />
           Enviar briefing no WhatsApp
         </button>
       </div>
